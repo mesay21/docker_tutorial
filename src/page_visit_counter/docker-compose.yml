@@ -1,0 +1,10 @@
+version: '3' #version of docker conpose
+
+services: 
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: on-failure
+    build: . #build image from current directory
+    ports:
+      - "4001:8081" #local port: container port
