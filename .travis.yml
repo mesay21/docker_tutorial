@@ -5,7 +5,7 @@ services:
   - docker ## need copy of docker ready
 
 before_install: #steps that need to occur before the test/deployment is run
-  - docker build -t mesayb/docker_tutorial -f Dockerfile.dev .
+  - docker build -t mesayb/docker_tutorial -f ./src/frontend/Dockerfile.dev .
 
 script: #commands to be run for the test to be executed
   - docker run -e CI=true mesayb/docker_tutorial npm run test -- --coverage
