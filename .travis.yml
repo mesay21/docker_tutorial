@@ -9,3 +9,16 @@ before_install: #steps that need to occur before the test/deployment is run
 
 script: #commands to be run for the test to be executed
   - docker run -e CI=true mesayb/docker_tutorial npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk #identify provider
+  region: "us-east-1" #depends on the instance
+  app: "docker_tutorial" #application name
+  env: "Dockertutorial-env"
+  bucket_name: "elasticbeanstalk-us-east-1-736570462489" #the files are copied and saved to s3 bucket
+  bucket_path: "docker_tutorial"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
